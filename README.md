@@ -16,4 +16,4 @@ Blockchallenge 重制版
 
 ## 关于代码
 
-使用 Typescript + Vue3 开发的静态网页小游戏，没有后端。
+使用 Typescript + Vue3 开发的网页小游戏，没有后端。
