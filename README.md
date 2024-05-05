@@ -2,7 +2,7 @@
 
 Blockchallenge 重制版
 
-传送门：https://axiomofchoice-hjt.github.io/puzzles/
+[传送门](https://axiomofchoice-hjt.github.io/puzzles/)
 
 ## 关于游戏
 
