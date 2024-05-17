@@ -7,6 +7,7 @@ export class BlockValue {
   static Str = Symbol();
   static Num = Symbol();
   static Arrow = Symbol();
+  static Star = Symbol();
   type: Symbol;
   value: string | number;
   constructor(arg?: string | number | Symbol, value?: string | number) {
@@ -16,6 +17,8 @@ export class BlockValue {
   }
   isNum() { return this.type === BlockValue.Num; }
   isStr() { return this.type === BlockValue.Str; }
+  isArrow() { return this.type === BlockValue.Arrow; }
+  isStar() { return this.type === BlockValue.Star; }
   get realText() {
     return (this.isNum()
       ? Math.round(this.num).toString()
@@ -23,22 +26,22 @@ export class BlockValue {
         this.str :
         '');
   }
-  get isText() { return this.isNum() || this.isStr(); }
-  set(arg?: string | number | Symbol, value?: string | number) {
-    if (typeof arg === 'symbol') {
-      this.type = arg;
-      assert((arg === BlockValue.Str && typeof value === 'string')
-        || (arg === BlockValue.Num && typeof value === 'number')
-        || (arg === BlockValue.Arrow && typeof value === 'number'));
-      this.value = value as string | number;
-    } else if (typeof arg === 'number') {
-      assert(typeof value === 'undefined');
+  set(arg1?: string | number | Symbol, arg2?: string | number) {
+    if (typeof arg1 === 'symbol') {
+      this.type = arg1;
+      assert((arg1 === BlockValue.Str && typeof arg2 === 'string')
+        || (arg1 === BlockValue.Num && typeof arg2 === 'number')
+        || (arg1 === BlockValue.Arrow && typeof arg2 === 'number')
+        || (arg1 === BlockValue.Star));
+      this.value = arg2 as string | number;
+    } else if (typeof arg1 === 'number') {
+      assert(typeof arg2 === 'undefined');
       this.type = BlockValue.Num;
-      this.value = arg;
-    } else if (typeof arg === 'string') {
-      assert(typeof value === 'undefined');
+      this.value = arg1;
+    } else if (typeof arg1 === 'string') {
+      assert(typeof arg2 === 'undefined');
       this.type = BlockValue.Str;
-      this.value = arg;
+      this.value = arg1;
     } else {
       this.type = BlockValue.Str;
       this.value = '';

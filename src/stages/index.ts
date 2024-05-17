@@ -29,6 +29,7 @@ import L23 from './L23';
 import L24 from './L24';
 import L25 from './L25';
 import L26 from './L26';
+import L27 from './L27';
 
 const stages = [
   L0, L1, L2, L3, L4,
@@ -36,7 +37,7 @@ const stages = [
   L10, L11, L12, L13, L14,
   L15, L16, L17, L18, L19,
   L20, L21, L22, L23, L24,
-  L25, L26
+  L25, L26, L27
 ];
 
 export class Stages {
