@@ -56,7 +56,7 @@ export default class extends Grid {
       if (this.tag[i]) {
         starNum++;
         this.get(i).value.set(BlockValue.Star);
-        this.get(i).color = Color.rgb(255, 0, 0);
+        this.get(i).color = Color.black;
       } else {
         this.get(i).value.set('');
       }
@@ -69,7 +69,7 @@ export default class extends Grid {
           if (this.inArea(near)) {
             let block = this.get(near);
             block.value.set('×');
-            block.color = Color.black;
+            block.color = Color.rgb(255, 0, 0);
             block.clickable = false;
           }
         }
@@ -77,7 +77,7 @@ export default class extends Grid {
           if (x != v.x) {
             let block = this.get(x, v.y);
             block.value.set('×');
-            block.color = Color.black;
+            block.color = Color.rgb(255, 0, 0);
             block.clickable = false;
           }
         }
@@ -85,7 +85,7 @@ export default class extends Grid {
           if (y != v.y) {
             let block = this.get(v.x, y);
             block.value.set('×');
-            block.color = Color.black;
+            block.color = Color.rgb(255, 0, 0);
             block.clickable = false;
           }
         }
@@ -93,7 +93,7 @@ export default class extends Grid {
           if (AREA[i] == AREA[j] && i != j) {
             let block = this.get(j);
             block.value.set('×');
-            block.color = Color.black;
+            block.color = Color.rgb(255, 0, 0);
             block.clickable = false;
           }
         }
