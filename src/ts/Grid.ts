@@ -18,7 +18,7 @@ export class Grid implements Stage {
   readonly footer: Footer;
   readonly bonus: Bonus;
   constructor(props: {
-    n: number, m: number, page: Page, noBlock?: boolean;
+    n: number, m: number, page: Page, noBlock?: boolean, blockInnerSize?: number;
   }) {
     this.n = props.n;
     this.m = props.m;
@@ -34,6 +34,7 @@ export class Grid implements Stage {
     if (!props.noBlock) {
       for (let i of _.range(this.size)) {
         this.puzzle.addBlock({
+          size: props.blockInnerSize,
           pos: this.getVec(i)
         });
       }

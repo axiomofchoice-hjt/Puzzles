@@ -1,13 +1,13 @@
 import { Vec } from './Vec';
 
 export class Config {
-  static readonly blockSize = 100;
-  static readonly blockGap = 8;
-  static readonly mouseEnterOpacity = 0.7;
-  static readonly mouseEnterLightChange = 0.9;
-  static readonly mouseDownSize = 94;
-  static readonly arrowRelativeSize = 0.5;
-  static readonly grid = {
+  static blockSize = 100;
+  static blockGap = 8;
+  static mouseEnterOpacity = 0.7;
+  static mouseEnterLightChange = 0.9;
+  static mouseDownSize = 94;
+  static svgRelativeSize = 0.5;
+  static grid = {
     getBlockMid(v: Vec): Vec {
       return new Vec(
         Config.blockSize * v.x + (Config.blockGap + Config.blockSize) / 2,

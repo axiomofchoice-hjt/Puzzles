@@ -30,14 +30,13 @@ const LINES = [
 export default class extends Grid {
   tag: boolean[];
   constructor(page: Page) {
-    super({ n: 6, m: 6, page });
+    super({ n: 6, m: 6, page, blockInnerSize: Config.blockSize });
     this.tag = genArray(this.size, () => false);
     this.header.message = '星之战';
     this.footer.load([
       [0, 6, Task.eq],
     ]);
     for (let i of _.range(this.size)) {
-      const colors = [Color.yellow, Color.green, Color.blue, Color.orange, Color.green, Color.yellow];
       this.get(i).background = Color.white;
     }
     for (let line of LINES) {

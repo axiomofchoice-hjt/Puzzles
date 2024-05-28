@@ -28,10 +28,14 @@ export class Color {
     );
   }
   toString(a: number): string {
-    return '#' + (4294967296 + (Math.round(this.r) * 65536 + Math.round(this.g) * 256 + Math.round(this.b)) * 256 + Math.floor(a * 255.9)).toString(16).slice(1);
+    let toHex = (x: number) => { return (256 + Math.round(x)).toString(16).slice(1); };
+    return '#' + toHex(this.r) + toHex(this.g) + toHex(this.b) + toHex(Math.floor(a * 255.9));
   }
   clone(): Color {
     return new Color(this.r, this.g, this.b);
+  }
+  equal(b: Color): boolean {
+    return this.r == b.r && this.g == b.g && this.b == b.b;
   }
   static white = Color.rgb(255, 255, 255);
   static black = Color.rgb(0, 0, 0);

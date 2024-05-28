@@ -8,6 +8,7 @@ export class BlockValue {
   static Num = Symbol();
   static Arrow = Symbol();
   static Star = Symbol();
+  static Chess = Symbol();
   type: Symbol;
   value: string | number;
   constructor(arg?: string | number | Symbol, value?: string | number) {
@@ -19,6 +20,7 @@ export class BlockValue {
   isStr() { return this.type === BlockValue.Str; }
   isArrow() { return this.type === BlockValue.Arrow; }
   isStar() { return this.type === BlockValue.Star; }
+  isChess() { return this.type === BlockValue.Chess; }
   get realText() {
     return (this.isNum()
       ? Math.round(this.num).toString()
@@ -32,7 +34,8 @@ export class BlockValue {
       assert((arg1 === BlockValue.Str && typeof arg2 === 'string')
         || (arg1 === BlockValue.Num && typeof arg2 === 'number')
         || (arg1 === BlockValue.Arrow && typeof arg2 === 'number')
-        || (arg1 === BlockValue.Star));
+        || (arg1 === BlockValue.Star)
+        || (arg1 == BlockValue.Chess && typeof arg2 === 'string'));
       this.value = arg2 as string | number;
     } else if (typeof arg1 === 'number') {
       assert(typeof arg2 === 'undefined');
@@ -76,6 +79,7 @@ export class Block {
   opacity: number;
   imm_value: BlockValue | null;
   round: boolean;
+  backgroundOpacity: number;
   constructor(id: number, options?: {
     size?: number;
     pos?: Vec;
@@ -98,5 +102,6 @@ export class Block {
     this.opacity = options?.opacity ?? 1;
     this.round = options?.round ?? false;
     this.imm_value = null;
+    this.backgroundOpacity = 1;
   }
 }
