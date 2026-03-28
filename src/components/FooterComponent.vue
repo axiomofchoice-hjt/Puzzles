@@ -27,7 +27,7 @@ const textStyle = {
         :style="{ color: task.ok() ? '#080' : task.fail() ? 'red' : 'black' }">[{{ task.now }}/{{ task.max }}]</span>
     </div>
     <div class="footer-component-text" :style="textStyle" style="text-align: right; font-family: msyh subset, 微软雅黑;">
-      <a href="https://github.com/axiomofchoice-hjt/Puzzles" target="_blank"
+      <a href="https://github.com/axiomofchoice-hjt/puzzles" target="_blank"
         style="color: grey; font-size: 15px; text-decoration: none; pointer-events: auto;">
         Github<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px"
           viewBox="0 0 100 100" width="15" height="15"
