@@ -14,7 +14,7 @@ const MARGIN = 120; // 宝藏生成的安全边距
 const HIT_RADIUS = 48; // 命中宝藏的判定半径
 const MARKER_R = 32; // 点击留下的圆半径
 const COIN_R = 34; // 找到后宝藏圆半径
-const CHANCE = 3; // 目标次数
+const CHANCE = 4; // 目标次数
 const MIN_DIST = 240; // 宝藏与第一次点击的最小距离
 
 const dist = (ax: number, ay: number, b: Point) => Math.hypot(ax - b.x, ay - b.y);
