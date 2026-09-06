@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import type { MouseEvent } from "react";
 import type { LevelComponent } from "../types";
 
@@ -17,6 +17,7 @@ const CELL = 72;
 const GAP = Math.round(CELL * (8 / 92)); // inactive: BlockGap(8) 相对 BlockSize(92) 的比例
 const FONT = CELL * 0.425; // inactive: 数字字号 = 块尺寸 * 0.425
 const ARROW = CELL * 0.5;  // inactive: svgRelativeSize = 0.5
+const STAR = CELL * 0.32;  // 命中五角星尺寸
 
 /** 网格水平/垂直居中于画布。 */
 const GRID_W = COLS * CELL + (COLS - 1) * GAP;
@@ -120,37 +121,37 @@ export const Level2Guess: LevelComponent = ({ setHud, setDone }) => {
           return <rect key={i} x={x} y={y} width={CELL} height={CELL} fill={WHITE} />;
         }
         const r = reveal[i];
-        const arrowSize = ARROW;
-        const starSize = CELL * 0.32;
         let fill = GREY;
         if (r === "high" || r === "low") fill = BLUE;
         else if (r === "found") fill = YELLOW;
         const spinning = r === "high" || r === "low";
+        const spinStyle = spinning
+          ? ({
+              "--b": r === "high" ? "180deg" : "-180deg",
+              transform: "rotate(var(--b))",
+            } as CSSProperties)
+          : undefined;
         return (
-          <g
-            key={i}
-            className={spinning ? "block-spin" : undefined}
-            style={
-              spinning
-                ? ({
-                    "--b": r === "high" ? "180deg" : "-180deg",
-                    transform: "rotate(var(--b))",
-                  } as React.CSSProperties)
-                : undefined
-            }
-          >
-            <rect x={x} y={y} width={CELL} height={CELL} fill={fill} />
+          <g key={i} className={spinning ? "block-spin" : undefined} style={spinStyle}>
+            <rect
+              x={x}
+              y={y}
+              width={CELL}
+              height={CELL}
+              fill={fill}
+              className={!r ? "block-hover" : undefined}
+            />
             {spinning && (
               <svg
-                x={x + (CELL - arrowSize) / 2}
-                y={y + (CELL - arrowSize) / 2}
-                width={arrowSize}
-                height={arrowSize}
+                x={x + (CELL - ARROW) / 2}
+                y={y + (CELL - ARROW) / 2}
+                width={ARROW}
+                height={ARROW}
                 viewBox="0 0 1024 1024"
               >
                 <g
                   className="arrow-fixed"
-                  style={{ "--a": r === "high" ? "270deg" : "90deg" } as React.CSSProperties}
+                  style={{ "--a": r === "high" ? "270deg" : "90deg" } as CSSProperties}
                 >
                   <path d={ARROW_PATH} fill={TEXT} />
                 </g>
@@ -158,10 +159,10 @@ export const Level2Guess: LevelComponent = ({ setHud, setDone }) => {
             )}
             {r === "found" && (
               <svg
-                x={x + (CELL - starSize) / 2}
-                y={y + (CELL - starSize) / 2}
-                width={starSize}
-                height={starSize}
+                x={x + (CELL - STAR) / 2}
+                y={y + (CELL - STAR) / 2}
+                width={STAR}
+                height={STAR}
                 viewBox="0 0 1024 1024"
               >
                 <path d={STAR_PATH} fill={TEXT} />

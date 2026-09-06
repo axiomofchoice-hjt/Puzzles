@@ -65,13 +65,12 @@ export default function App() {
     setHud: handleSetHud,
     done,
     setDone,
-    complete: () => {},
   };
 
   const hudClass =
     hud.current > hud.target
       ? "hud hud--over"
-      : hud.current === hud.target && done
+      : done
         ? "hud hud--done"
         : "hud";
 

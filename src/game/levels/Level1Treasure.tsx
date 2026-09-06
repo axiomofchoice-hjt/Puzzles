@@ -76,10 +76,10 @@ export const Level1Treasure: LevelComponent = ({ setHud, setDone }) => {
         return;
       }
 
-      // 命中宝藏 → 显现。
+      // 命中宝藏 → 显现。找到且点击不超过 CHANCE 才计入通关。
       if (!found && insideCircle(p, treasure, HIT_RADIUS)) {
         setFound(true);
-        setDone(true);
+        setDone(clicks + 1 <= CHANCE);
         return;
       }
 

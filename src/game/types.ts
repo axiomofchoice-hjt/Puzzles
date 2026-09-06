@@ -11,8 +11,6 @@ export interface LevelContext {
   /** 是否已达成目标（如找到宝藏），用于计数器颜色。 */
   done: boolean;
   setDone: (v: boolean) => void;
-  /** 通关时调用，进入下一关。 */
-  complete: () => void;
 }
 
 /** 关卡元数据（菜单/进度提示用）。 */

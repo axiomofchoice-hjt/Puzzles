@@ -62,6 +62,14 @@ body {
   100% { opacity: 0; }
 }
 
+/* 猜数：可点击方块悬浮时变淡（参考 inactive toLight） */
+.block-hover {
+  transition: filter 0.1s ease;
+}
+.block-hover:hover {
+  filter: brightness(1.09);
+}
+
 /* 猜数：整个方块像 inactive 那样旋转 180° 进入位 */
 .block-spin {
   transform-box: fill-box;
