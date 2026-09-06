@@ -108,3 +108,57 @@ body {
   background: #fdecec;
   border-color: #f4bcbc;
 }
+
+/* 选关界面 */
+.select {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 24px;
+}
+
+.select__title {
+  margin: 0 0 32px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #22303e;
+}
+
+.select__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 560px;
+}
+
+.select__block {
+  width: 110px;
+  height: 110px;
+  border-radius: 12px;
+  border: 2px solid #d8dfe9;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease, background 0.12s ease;
+}
+
+.select__block:hover {
+  transform: translateY(-2px);
+  border-color: #4f6ef7;
+}
+
+.select__block.is-cleared {
+  background: #f4d64a;
+  border-color: #e0b52a;
+}
+
+.select__num {
+  font-size: 40px;
+  font-weight: 700;
+  color: #22303e;
+}
