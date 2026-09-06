@@ -22,6 +22,7 @@ function loadCleared(): Set<string> {
 export default function App() {
   const [view, setView] = useState<"select" | "play">("select");
   const [levelIndex, setLevelIndex] = useState(0);
+  const [session, setSession] = useState(0); // 重新开始用，控制关卡组件重挂载
   const [hud, setHud] = useState<HudState>({ current: 0, target: 0 });
   const [done, setDone] = useState(false);
   const [cleared, setCleared] = useState<Set<string>>(loadCleared);
@@ -30,6 +31,7 @@ export default function App() {
 
   const openLevel = useCallback((index: number) => {
     setLevelIndex(index);
+    setSession(0);
     setHud({ current: 0, target: 0 });
     setDone(false);
     setView("play");
@@ -37,6 +39,12 @@ export default function App() {
 
   const handleSetHud = useCallback((current: number, target: number) => {
     setHud({ current, target });
+  }, []);
+
+  const restart = useCallback(() => {
+    setSession((s) => s + 1);
+    setHud({ current: 0, target: 0 });
+    setDone(false);
   }, []);
 
   // 通关后写入 localStorage，方块背景变黄。
@@ -72,20 +80,41 @@ export default function App() {
   }
 
   const Component = level.Component;
+  const hasPrev = levelIndex > 0;
+  const hasNext = levelIndex < LEVELS.length - 1;
 
   return (
     <div className="app">
       <h1 className="app__title">{level.meta.title}</h1>
 
       <main className="stage">
-        <Component {...ctx} />
+        <Component key={session} {...ctx} />
       </main>
 
-      {/* 左下角计数 HUD */}
-      <div className={hudClass} aria-live="polite">
-        <span className="hud__current">{hud.current}</span>
-        <span className="hud__sep">/</span>
-        <span className="hud__target">{hud.target}</span>
+      {/* 底部条：左计数卡片 / 中重新开始 / 右 返回·上一关·下一关，垂直中心对齐 */}
+      <div className="bottom-bar">
+        {/* 左下角计数 HUD */}
+        <div className={hudClass} aria-live="polite">
+          <span className="hud__current">{hud.current}</span>
+          <span className="hud__sep">/</span>
+          <span className="hud__target">{hud.target}</span>
+        </div>
+
+        <button className="btn controls__restart" onClick={restart}>
+          重新开始
+        </button>
+
+        <div className="controls__nav">
+          <button className="btn" onClick={() => setView("select")}>
+            返回
+          </button>
+          <button className="btn" disabled={!hasPrev} onClick={() => openLevel(levelIndex - 1)}>
+            上一关
+          </button>
+          <button className="btn" disabled={!hasNext} onClick={() => openLevel(levelIndex + 1)}>
+            下一关
+          </button>
+        </div>
       </div>
     </div>
   );
