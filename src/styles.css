@@ -1,0 +1,110 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.5;
+  color: #22303e;
+  background: #f4f6f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #f4f6f9;
+}
+
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px;
+}
+
+.app__title {
+  margin: 0 0 18px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #22303e;
+  text-align: center;
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  width: min(100%, 980px);
+  max-height: 80vh;
+  cursor: crosshair;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* 箭头淡出动画 */
+.arrow {
+  animation: arrow-fade 2.4s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes arrow-fade {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 左下角计数 HUD */
+.hud {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.12);
+}
+
+.hud__current {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000;
+}
+
+.hud__sep {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000;
+}
+
+.hud__target {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000;
+}
+
+/* 达成目标：浅绿色 */
+.hud--done {
+  background: #e8f7ee;
+  border-color: #a9e0bf;
+}
+
+/* 超过目标：浅红色 */
+.hud--over {
+  background: #fdecec;
+  border-color: #f4bcbc;
+}
