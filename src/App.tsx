@@ -91,7 +91,7 @@ export default function App() {
         <Component key={session} {...ctx} />
       </main>
 
-      {/* 底部条：左计数卡片 / 中重新开始 / 右 返回·上一关·下一关，垂直中心对齐 */}
+      {/* 底部条：左计数卡片 / 右 上一关·重新开始·下一关·返回，垂直中心对齐 */}
       <div className="bottom-bar">
         {/* 左下角计数 HUD */}
         <div className={hudClass} aria-live="polite">
@@ -100,19 +100,18 @@ export default function App() {
           <span className="hud__target">{hud.target}</span>
         </div>
 
-        <button className="btn controls__restart" onClick={restart}>
-          重新开始
-        </button>
-
         <div className="controls__nav">
-          <button className="btn" onClick={() => setView("select")}>
-            返回
-          </button>
           <button className="btn" disabled={!hasPrev} onClick={() => openLevel(levelIndex - 1)}>
             上一关
           </button>
+          <button className="btn" onClick={restart}>
+            重新开始
+          </button>
           <button className="btn" disabled={!hasNext} onClick={() => openLevel(levelIndex + 1)}>
             下一关
+          </button>
+          <button className="btn" onClick={() => setView("select")}>
+            返回
           </button>
         </div>
       </div>

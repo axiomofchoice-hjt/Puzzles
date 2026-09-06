@@ -97,7 +97,7 @@ export const Level1Treasure: LevelComponent = ({ setHud, setDone }) => {
       onClick={handleClick}
     >
       {/* 白色画布 */}
-      <rect x={0} y={0} width={W} height={H} rx={14} fill="#ffffff" stroke="#e2e8f0" strokeWidth={2} />
+      <rect x={0} y={0} width={W} height={H} fill="#ffffff" />
 
       {treasure && markers.map((m) => <MarkerGraphic key={m.id} marker={m} target={treasure} />)}
 
